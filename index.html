@@ -3,167 +3,152 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Tech Portfolio & Blog</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <title>Awez Sonde | Cloud & Virtualization Portfolio</title>
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;600&family=Inter:wght@300;400;700&display=swap" rel="stylesheet">
     <style>
         :root {
-            --primary: #00d2ff;
-            --secondary: #3a7bd5;
-            --text-light: #f8f9fa;
-            --glass: rgba(255, 255, 255, 0.1);
+            --matrix-green: #00ff41;
+            --dark-bg: #0d0208;
+            --glass-bg: rgba(13, 2, 8, 0.85);
+            --border-glow: rgba(0, 255, 65, 0.3);
         }
 
-        * { box-sizing: border-box; }
-
-        body { 
-            font-family: 'Inter', sans-serif; 
-            line-height: 1.6; 
-            margin: 0; 
-            color: #fff;
-            /* Modern tech-themed background image */
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), 
-                        url('https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop');
-            background-attachment: fixed;
-            background-size: cover;
-            background-position: center;
-        }
-
-        .container {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
-
-        /* Hero Section */
-        header { 
-            text-align: center;
-            padding: 100px 0 50px;
-            animation: fadeIn 1.5s ease-out;
-        }
-
-        h1 { 
-            font-size: 3.5rem; 
-            margin-bottom: 0.5rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            font-weight: 800;
-        }
-
-        header p { font-size: 1.2rem; color: #ccc; max-width: 600px; margin: 0 auto; }
-
-        /* Sections and Cards */
-        section { margin-bottom: 4rem; }
+        body, html { margin: 0; padding: 0; background-color: var(--dark-bg); color: #e0e0e0; font-family: 'Inter', sans-serif; overflow-x: hidden; }
         
-        h2 { 
-            border-left: 4px solid var(--primary); 
-            padding-left: 1rem; 
-            margin-bottom: 2rem;
-            text-transform: uppercase;
-            letter-spacing: 2px;
+        /* Matrix Background Canvas */
+        #matrix-canvas { position: fixed; top: 0; left: 0; z-index: -1; }
+
+        .container { max-width: 900px; margin: 0 auto; padding: 2rem; position: relative; }
+
+        header { text-align: center; padding: 80px 0 40px; }
+        h1 { font-family: 'Fira Code', monospace; font-size: 3rem; color: var(--matrix-green); margin: 0; text-shadow: 0 0 10px var(--matrix-green); }
+        .subtitle { font-size: 1.2rem; color: #888; margin-top: 10px; }
+
+        section { 
+            background: var(--glass-bg);
+            border: 1px solid var(--border-glow);
+            padding: 2.5rem;
+            border-radius: 12px;
+            margin-bottom: 3rem;
+            backdrop-filter: blur(5px);
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
         }
 
-        .grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 2rem;
-        }
+        h2 { font-family: 'Fira Code', monospace; color: var(--matrix-green); border-bottom: 1px solid var(--border-glow); padding-bottom: 10px; }
 
+        /* About Me Styling */
+        .about-grid { display: grid; grid-template-columns: 1fr; gap: 20px; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 15px; }
+        .skill-tag { background: rgba(0, 255, 65, 0.1); border: 1px solid var(--matrix-green); color: var(--matrix-green); padding: 4px 12px; border-radius: 4px; font-size: 0.85rem; font-family: 'Fira Code', monospace; }
+
+        /* Cards */
         .card { 
-            background: var(--glass);
-            backdrop-filter: blur(10px); /* Glassmorphism effect */
-            -webkit-backdrop-filter: blur(10px);
-            padding: 2rem; 
-            border-radius: 15px; 
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            transition: all 0.3s ease;
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
+            border: 1px solid rgba(255,255,255,0.1); 
+            padding: 1.5rem; 
+            border-radius: 8px; 
+            margin-top: 1.5rem; 
+            transition: 0.3s;
+            background: rgba(255,255,255,0.03);
         }
+        .card:hover { border-color: var(--matrix-green); transform: translateX(10px); }
+        .card h3 { margin-top: 0; color: #fff; }
+        
+        a { color: var(--matrix-green); text-decoration: none; font-weight: bold; }
+        a:hover { text-decoration: underline; }
 
-        .card:hover { 
-            transform: translateY(-10px); 
-            background: rgba(255, 255, 255, 0.15);
-            border-color: var(--primary);
-        }
-
-        .tag { 
-            display: inline-block;
-            background: var(--primary); 
-            color: #000;
-            padding: 0.1rem 0.8rem; 
-            border-radius: 20px; 
-            font-size: 0.75rem; 
-            text-transform: uppercase; 
-            font-weight: 800; 
-            margin-bottom: 1rem;
-        }
-
-        a.btn { 
-            display: inline-block;
-            margin-top: 1.5rem;
-            color: var(--primary); 
-            text-decoration: none; 
-            font-weight: 600;
-            transition: 0.2s;
-        }
-
-        a.btn:hover { color: #fff; text-shadow: 0 0 8px var(--primary); }
-
-        footer { text-align: center; padding: 4rem 0; opacity: 0.6; font-size: 0.9rem; }
-
-        @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-
-        @media (max-width: 600px) {
-            h1 { font-size: 2.5rem; }
-            .container { padding: 1rem; }
-        }
+        footer { text-align: center; padding: 2rem; color: #555; font-size: 0.8rem; }
     </style>
 </head>
 <body>
 
+    <canvas id="matrix-canvas"></canvas>
+
     <div class="container">
         <header>
-            <h1>My Projects & Thoughts</h1>
-            <p>Documenting a journey through Cloud, Virtualization, and Modern Web Development.</p>
+            <h1>AWEZ SONDE</h1>
+            <p class="subtitle">Cloud Engineer | OpenShift & Virtualization Enthusiast</p>
         </header>
 
-        <section id="blogs">
-            <h2>Latest Blogs</h2>
-            <div class="grid">
-                <div class="card">
-                    <div>
-                        <span class="tag">Virtualization</span>
-                        <h3>Red Hat OpenShift: Live Migration</h3>
-                        <p>Exploring high-availability and zero-downtime workloads in the KubeVirt ecosystem.</p>
-                    </div>
-                    <a href="blogs/redhat-migration.html" class="btn">Read Article →</a>
-                </div>
-                </div>
-        </section>
-
-        <section id="demos">
-            <h2>Live Demos</h2>
-            <div class="grid">
-                <div class="card">
-                    <div>
-                        <span class="tag">Demo</span>
-                        <h3>Sample Project</h3>
-                        <p>A full-stack demonstration featuring Docker containers and real-time data sync.</p>
-                    </div>
-                    <a href="demos/project-one/index.html" class="btn">View Live Demo →</a>
+        <section id="about">
+            <h2>> whoami</h2>
+            <div class="about-grid">
+                <p>
+                    I am a highly skilled <strong>Cloud and Infrastructure Engineer</strong> with a deep focus on <strong>OpenShift Virtualization</strong> and modern hybrid-cloud architectures. I specialize in bridging the gap between traditional VM workloads and cloud-native container ecosystems.
+                </p>
+                <p>
+                    My expertise lies in designing scalable environments, managing live migrations, and automating infrastructure-as-code. I am passionate about optimizing performance and reliability across Azure, AWS, and on-premise data centers.
+                </p>
+                <div class="skill-tags">
+                    <span class="skill-tag">Red Hat OpenShift</span>
+                    <span class="skill-tag">KubeVirt</span>
+                    <span class="skill-tag">Kubernetes</span>
+                    <span class="skill-tag">Azure</span>
+                    <span class="skill-tag">Terraform</span>
+                    <span class="skill-tag">Virtualization</span>
+                    <span class="skill-tag">Linux/RHEL</span>
                 </div>
             </div>
         </section>
 
+        <section id="blogs">
+            <h2>> latest_logs</h2>
+            <div class="card">
+                <h3>Red Hat OpenShift Virtualization: Live Migration</h3>
+                <p>A technical guide on orchestrating zero-downtime VM migrations within Kubernetes clusters.</p>
+                <a href="blogs/redhat-migration.html">Access File →</a>
+            </div>
+        </section>
+
+        <section id="demos">
+            <h2>> live_deployments</h2>
+            <div class="card">
+                <h3>Automated Cloud Provisioning</h3>
+                <p>Interactive demo showing Terraform-based deployment of hybrid infrastructure.</p>
+                <a href="demos/project-one/index.html">View Execution →</a>
+            </div>
+        </section>
+
         <footer>
-            <p>&copy; 2026 &bull; Designed by Me &bull; Hosted on GitHub Pages</p>
+            <p>&copy; 2026 - System Hosted on GitHub Pages</p>
         </footer>
     </div>
 
+    <script>
+        const canvas = document.getElementById('matrix-canvas');
+        const ctx = canvas.getContext('2d');
+
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789$+-*/=%\"'#&_(),.;:?!\\|{}<>[]";
+        const fontSize = 16;
+        const columns = canvas.width / fontSize;
+        const drops = Array(Math.floor(columns)).fill(1);
+
+        function draw() {
+            ctx.fillStyle = 'rgba(13, 2, 8, 0.05)';
+            ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+            ctx.fillStyle = '#00ff41';
+            ctx.font = fontSize + 'px monospace';
+
+            for (let i = 0; i < drops.length; i++) {
+                const text = characters.charAt(Math.floor(Math.random() * characters.length));
+                ctx.fillText(text, i * fontSize, drops[i] * fontSize);
+
+                if (drops[i] * fontSize > canvas.height && Math.random() > 0.975) {
+                    drops[i] = 0;
+                }
+                drops[i]++;
+            }
+        }
+
+        setInterval(draw, 33);
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
 </body>
 </html>
